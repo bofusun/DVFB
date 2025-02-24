@@ -1,0 +1,74 @@
+# @package agent
+
+# common
+_target_: agent.disco.DISCOAgent
+name: disco
+reward_free: ${reward_free}
+obs_type: ??? # to be specified later
+obs_shape: ??? # to be specified later
+action_shape: ??? # to be specified later
+action_range: 1 # to be specified later
+save_dir: ??? # to be specified later
+device: ${device}
+dtype: 'float32'
+maze_parent: ??? # to be specified later
+
+update_every_steps: 2
+num_expl_steps: ??? # to be specified later
+hidden_dim: 128
+feature_dim: 128
+nstep: 1
+batch_size: 64
+use_tb: ${use_tb}
+use_wandb: ${use_wandb}
+
+# diayn
+discriminator_lr: 3e-4
+diayn_scale: 1.0
+update_skill_every_step: 25
+skill_dim: 10
+max_skill_dim: 100
+eval_num_skills: ${agent.skill_dim}
+maximum_timestep: 50
+
+# critic (SAC)
+critic_target_tau: 0.005
+critic_lr : 3e-4
+critic_target_update_frequency: 2
+
+# actor, alpha (SAC)
+actor_update_frequency: 2
+actor_lr : 3e-4
+alpha_lr : 3e-4
+log_std_bounds: [-5, 2]  
+init_alpha: 0.2
+use_auto_alpha: false
+
+# fine-tuning
+init_critic: false
+
+# encoder
+encoder_lr: 3e-4
+update_encoder: ${update_encoder}
+
+# prior
+use_prior: false
+only_x: false
+
+# dmc
+dmc_update_D_delta: 400
+
+# DISCO specific
+delta_threshold: 5
+extend_num: 5
+num_eval_each_skill: 5
+num_neigh: 5
+interval: 250000
+kl_start: 10.0
+kl_target: 10.0
+check_delta_every_steps: 10000
+init_beta: 0.0001
+
+use_clamp: false
+use_actor_target: true
+threshold: 0.5

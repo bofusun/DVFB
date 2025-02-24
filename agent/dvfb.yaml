@@ -1,0 +1,44 @@
+# @package agent
+_target_: agent.dvfb.dvfbAgent
+name: dvfb
+skill_dim: 50 # 128 # 50
+reward_free: ${reward_free}
+obs_type: ??? # to be specified later
+obs_shape: ??? # to be specified later
+action_shape: ??? # to be specified later
+device: ${device}
+lr: 1e-4
+lr_coef: 1
+fb_target_tau: 0.01 # 0.001-0.01
+update_every_steps: 2
+use_tb: ${use_tb}
+use_wandb: ${use_wandb}
+num_expl_steps: ??? # to be specified later
+num_inference_steps: 10000 # 10000 # 5120
+hidden_dim: 1024   # 128, 2048
+backward_hidden_dim: 526   # 512
+feature_dim: 512   # 128, 1024
+z_dim: 50 # 50
+stddev_schedule: 0.2
+stddev_clip: 0.3
+update_z_every_step: 300
+update_z_proba: 1.0
+nstep: 1 # 3
+batch_size: 1024
+init_fb: true
+update_encoder: ${update_encoder}
+goal_space: null #"simplified_quadruped"
+ortho_coef: 1.0
+log_std_bounds: (-5, 2)
+temp: 1
+boltzmann: false
+debug: false
+future_ratio: 0.0
+mix_ratio: 0.5
+rand_weight: false
+preprocess: true
+norm_z: true
+q_loss: true # false
+q_loss_coef: 0.01
+additional_metric: false
+add_trunk: false
