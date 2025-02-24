@@ -623,9 +623,7 @@ class dvfbAgent:
             MQ2 = torch.einsum('sd, sd -> s', F2, z).view(obs.shape[0], -1)
             critic_obs = torch.cat([obs, z], dim=-1)
             Q1, Q2 = self.critic(critic_obs, action)
-            with torch.no_grad():
-                alpha = torch.min(MQ1, MQ2).mean().item()/torch.min(Q1, Q2).mean().item()
-            Q = 2*alpha*torch.min(Q1, Q2)+torch.min(MQ1, MQ2)
+            Q = 50*torch.min(Q1, Q2)+torch.min(MQ1, MQ2)
         else:
             F1, F2 = self.forward_net(obs, z, action)
             MQ1 = torch.einsum('sd, sd -> s', F1, z).view(obs.shape[0], -1)
@@ -634,8 +632,8 @@ class dvfbAgent:
             Q1, Q2 = self.critic(critic_obs, action)            
             Q = torch.min(Q1, Q2)
             MQ = torch.min(MQ1, MQ2)
-            alpha = (Q / MQ).detach()
-            Q = Q + alpha * MQ 
+            
+            Q = 50*Q + MQ 
             
         if self.use_tb or self.use_wandb:
             metrics['actor_MQ'] = torch.min(MQ1, MQ2).mean().item()
