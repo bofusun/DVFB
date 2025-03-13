@@ -36,7 +36,7 @@ python my_pretrain_new.py agent=dvfb domain=quadruped obs_type=states seed=10
 ```
 (2) Pretrain DVFB without contrative entropy reward in quadruped domain
 ```
-python my_pretrain_new.py agent=dvfb domain=quadruped obs_type=states seed=10
+python my_pretrain_new.py agent=dvfb0 domain=quadruped obs_type=states seed=10
 ```
 (3) Fintune DVFB in quadruped walk task
 ```
@@ -44,7 +44,7 @@ python my_finetune_new_fb.py agent=dvfb task=quadruped_walk obs_type=states load
 ```
 (4) Fintune DVFB without contrative entropy reward in quadruped walk task
 ```
-python my_finetune_new_fb.py agent=dvfb task=quadruped_walk obs_type=states load_seed=10 seed=10
+python my_finetune_new_fb.py agent=dvfb0 task=quadruped_walk obs_type=states load_seed=10 seed=10
 ```
 
 
