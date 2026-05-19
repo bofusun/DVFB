@@ -32,11 +32,11 @@ pip install -r requirements.txt
 
 (1) Pretrain DVFB in quadruped domain
 ```
-python my_pretrain_new.py agent=dvfb domain=quadruped obs_type=states seed=10
+python my_pretrain_new_fb.py agent=dvfb domain=quadruped obs_type=states seed=10
 ```
 (2) Pretrain DVFB without contrative entropy reward in quadruped domain
 ```
-python my_pretrain_new.py agent=dvfb0 domain=quadruped obs_type=states seed=10
+python my_pretrain_new_fb.py agent=dvfb0 domain=quadruped obs_type=states seed=10
 ```
 (3) Fintune DVFB in quadruped walk task
 ```
